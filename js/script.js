@@ -4,24 +4,37 @@
 
 const randArray = generateRandomArray(5, 1, 100);
 console.log(randArray);
-
 //visualizzare in pagina i numeri casuali
 const numberGenerate = document.querySelector('#randnumber');
 numberGenerate.innerHTML = randArray;
 
 //far partire il timer di 30 secondi
-let timer = 30;
+let timer = 10;
 
 const timerClock = document.querySelector('#clock');
 timerClock.innerHTML = timer;
 
+let userNumber;
+
+//a ogni secondo il timer diminuisce
 const clock = setInterval(function() {
     timer--;
     timerClock.innerHTML = timer;
 
+    //se il timer arriva a zero
     if(timer == 0) {
+        //scrivi che il tempo è finito
         clearInterval(clock);
         timerClock.innerHTML = 'tempo finito';
+
+        //fai sparire i numeri
+        numberGenerate.classList.add('number-none');
+
+        //chiedi per 5 volte all'utente i numeri che ha visto
+        for(let i = 0; i < 5; i++) {
+            const userNumber = parseInt(prompt('scrivi un numero che hai visto'));
+            console.log(userNumber);
+        }        
     }
 }, 1000);
 
