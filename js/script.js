@@ -31,10 +31,12 @@ const clock = setInterval(function() {
         numberGenerate.classList.add('number-none');
 
         //chiedi per 5 volte all'utente i numeri che ha visto
-        for(let i = 0; i < 5; i++) {
-            const userNumber = parseInt(prompt('scrivi un numero che hai visto'));
-            console.log(userNumber);
-        }        
+        setTimeout(function () {
+            for(let i = 0; i < 5; i++) {
+                const userNumber = parseInt(prompt('scrivi un numero che hai visto'));
+                console.log(userNumber);
+            } 
+        },2000);
     }
 }, 1000);
 
