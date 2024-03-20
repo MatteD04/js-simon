@@ -2,6 +2,7 @@
 //Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
 //Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
+//generare un array di 5 numeri casuali non ripetuti
 const randArray = generateRandomArray(5, 1, 100);
 console.log(randArray);
 //visualizzare in pagina i numeri casuali
@@ -9,7 +10,7 @@ const numberGenerate = document.querySelector('#randnumber');
 numberGenerate.innerHTML = randArray;
 
 //far partire il timer di 30 secondi
-let timer = 10;
+let timer = 30;
 
 const timerClock = document.querySelector('#clock');
 timerClock.innerHTML = timer;
@@ -32,10 +33,17 @@ const clock = setInterval(function() {
 
         //chiedi per 5 volte all'utente i numeri che ha visto
         setTimeout(function () {
+            const guessArray = [];
+
             for(let i = 0; i < 5; i++) {
                 const userNumber = parseInt(prompt('scrivi un numero che hai visto'));
                 console.log(userNumber);
+
+                if(randArray.includes(userNumber)) {
+                    guessArray.push(userNumber);
+                }
             } 
+            timerClock.innerHTML = `hai azzeccato ${guessArray.length} numeri. I numeri sono: ${guessArray}`;
         },2000);
     }
 }, 1000);
